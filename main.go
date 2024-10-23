@@ -5,6 +5,7 @@ import (
 
 	"buf.build/go/bufplugin/check"
 	"buf.build/go/bufplugin/check/checkutil"
+	"github.com/iancoleman/strcase"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
@@ -31,7 +32,7 @@ func checkFieldCamelCase(
 	fieldDescriptor protoreflect.FieldDescriptor,
 ) error {
 	fieldName := string(fieldDescriptor.Name())
-	fieldNameToCamelCase := toCamelCase(fieldName)
+	fieldNameToCamelCase := strcase.ToLowerCamel(fieldName)
 	if fieldName != fieldNameToCamelCase {
 		responseWriter.AddAnnotation(
 			check.WithMessagef(
@@ -43,9 +44,4 @@ func checkFieldCamelCase(
 		)
 	}
 	return nil
-}
-
-func toCamelCase(fieldName string) string {
-	// The actual logic for toCamelCase would go here.
-	return "TODO"
 }
