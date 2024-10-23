@@ -1,2 +1,2 @@
-# buf-plugin-field-lower-camel-case
+# buf-plugin-field-camel-case
 🐪
